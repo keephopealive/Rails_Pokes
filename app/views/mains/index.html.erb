@@ -1,0 +1,55 @@
+<div class="row">
+	<div class="col-md-6 col-sm-12">
+		<h3><%= flash[:registration_error] %></h3>
+		<form method="post" action="/users"> <!-- /users/create = /users method="post" -->
+			<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+			<h2>Registration</h2>	
+			<% if @user %>
+				<% @user.errors.full_messages.each do |message| %>
+					<p><%= message %></p>
+				<% end %>
+			<% end %>		
+			<div class="form-group">
+				<label>Name:</label>
+				<input type="text" class="form-control" name="name">
+			</div>
+			<div class="form-group">
+				<label>Alias:</label>
+				<input type="text" class="form-control" name="alias">
+			</div>
+			<div class="form-group">
+				<label>Email:</label>
+				<input type="email" class="form-control" name="email">
+			</div>
+			<div class="form-group">
+				<label>Birthdate:</label>
+				<input type="date" class="form-control" name="birthdate">
+			</div>
+			<div class="form-group">
+				<label>Password:</label>
+				<input type="password" class="form-control" name="password">
+			</div>
+			<div class="form-group">
+				<label>Confirm Password:</label>
+				<input type="password" class="form-control" name="confirm_password">
+			</div>
+			<input type="submit" value="Register" class="btn btn-primary form-control">
+		</form>
+	</div>
+	<div class="col-md-6 col-sm-12"> 
+		<h3><%= flash[:login_error] %></h3>
+		<form method="post" action="/sessions"> <!-- /sessions/create = /sessions method="post" -->
+			<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+			<h2>Login</h2>
+			<div class="form-group">
+				<label>Email:</label>
+				<input type="email" class="form-control" name="email">
+			</div>
+			<div class="form-group">
+				<label>Password:</label>
+				<input type="password" class="form-control" name="password">
+			</div>
+			<input type="submit" value="Login" class="btn btn-primary form-control">
+		</form>
+	</div>
+</div>

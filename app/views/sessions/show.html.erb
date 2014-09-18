@@ -1,0 +1,70 @@
+
+	<style type="text/css">
+	.right{ 	
+		text-align: right;
+	}
+	.boxed{
+		margin: 5px;
+		padding: 10px;
+		border: 1px solid gray;
+		border-radius: 5px;
+	}
+	.right{
+		float:right;
+	}
+	.userTitle{
+		float:left;
+		width: 200px;
+		font-size: 1.3em;
+	}
+	</style>	
+	<div class="row">
+		<div class="col-md-12">
+			<div class="userTitle">Welcome <strong><%= @user.name %></strong></div>
+			<a href="/logout"><button class="btn btn-warning right">Logout</button></a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="boxed">
+				<% @usersPokeMe.each do |userPokeMe|  %>
+					<% if userPokeMe.id != @user.id %>
+						<p><%= userPokeMe.name %> poked you!</p>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+		<div class="col-md-6">	
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="box">
+				<table class="table tabled-bordered">
+					<thead>
+						<td>Name</td>
+						<td>Alias</td>
+						<td>Email Address</td>
+						<td>Poke History</td>
+						<td>Action</td>
+					</thead>
+					<% @users.each do |user|  %>
+						<% if user.id != @user.id %>
+							<tr>
+								<td><%= user.name %></td>
+								<td><%= user.alias %></td>
+								<td><%= user.email %></td>
+								<td>
+									1
+								</td>
+								<td>
+									<a href="/poke/<%= user.id %>"><button class="btn btn-primary">Poke!</button></a>
+								</td>
+							</tr>
+						<% end %>
+					<% end %>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
