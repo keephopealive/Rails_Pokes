@@ -14,6 +14,15 @@ class UsersController < ApplicationController
     @user.birthdate = params[:birthdate]
     @user.password = params[:password]
     @user.save
+
+
+    @users = User.all # returns number of users
+    @users.map { |user|
+      if (user.id != @user.id)
+        Poke.create({:user_id => @user.id, :poke_id => user.id, :poke_count => 0})
+        Poke.create({:user_id => user.id, :poke_id => @user.id, :poke_count => 0})
+      end
+    }
     render '/mains/index'
   end
 

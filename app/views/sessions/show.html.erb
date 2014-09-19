@@ -28,9 +28,7 @@
 		<div class="col-md-6">
 			<div class="boxed">
 				<% @usersPokeMe.each do |userPokeMe|  %>
-					<% if userPokeMe.id != @user.id %>
-						<p><%= userPokeMe.name %> poked you!</p>
-					<% end %>
+						<p><%= userPokeMe.name %> poked you <%= userPokeMe.poke_count %> time(s)!</p>
 				<% end %>
 			</div>
 		</div>
@@ -49,19 +47,17 @@
 						<td>Action</td>
 					</thead>
 					<% @users.each do |user|  %>
-						<% if user.id != @user.id %>
 							<tr>
 								<td><%= user.name %></td>
 								<td><%= user.alias %></td>
 								<td><%= user.email %></td>
 								<td>
-									1
+									<%= user.poke_count %>
 								</td>
 								<td>
 									<a href="/poke/<%= user.id %>"><button class="btn btn-primary">Poke!</button></a>
 								</td>
 							</tr>
-						<% end %>
 					<% end %>
 				</table>
 			</div>

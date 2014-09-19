@@ -25,10 +25,13 @@ class SessionsController < ApplicationController
   end
 
   def show
+    
+    @usersPokeMe = User.all.where('id != ?', session[:user_id])
+    @usersPokeMe = @usersPokeMe.first.poked.select(:name, :alias, :email, :poke_count)
+  
     @user = User.find(session[:user_id])
-    @usersPokeMe = User.find(session[:user_id]).pokers # All who poked user 
-    @users = User.all
-  end
+    @users = User.find(session[:user_id]).poked.select(:name, :alias, :email, :poke_count) # All who poked user 
+    end
 
   def destroy
     session[:user_id] = nil
