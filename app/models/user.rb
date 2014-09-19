@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
 	has_many :pokes
-	has_many :poked, through: :pokes, foreign_key: "user_id" # People who we poked.
+	has_many :poked, through: :pokes, foreign_key: "user_id" # People who WE POKED.
+	has_many :pokee, through: :pokes, foreign_key: "poke_id" # People who POKED US.
+	has_many :users
 
 	validates :name, 			:presence 	=> true,
 			  :length 						=> { :within => 2..40 }
